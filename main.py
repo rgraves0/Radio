@@ -22,7 +22,7 @@ async def radio(update, context):
         await update.message.reply_text("ဒီလိုင်းမရှိပါ။ coolfm, virginhitz, efm ထဲက တစ်ခုကို ရွေးပါ။")
 
 def main():
-    token = os.getenv("7617662291:AAEaW85ViJO_Y7Ba1pGc9TfwpEmi68U2ApA")
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
     application = Application.builder().token(token).build()
 
     application.add_handler(CommandHandler("start", start))
