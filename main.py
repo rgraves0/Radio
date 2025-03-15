@@ -1,7 +1,7 @@
 import os
 from telegram.ext import Application, CommandHandler
-from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.types.input_stream import AudioPiped
+from py_tgcalls import PyTgCalls, StreamType, idle
+from py_tgcalls.types.input_stream import AudioPiped
 
 RADIO_STATIONS = {
     "coolfm": "http://live3.iqstream.co.th:8000/coolfm",
@@ -9,7 +9,6 @@ RADIO_STATIONS = {
     "efm": "http://live3.iqstream.co.th:8000/efm"
 }
 
-# Bot နဲ့ PyTgCalls ကို ချိတ်ဆက်ပါ
 token = os.getenv("TELEGRAM_BOT_TOKEN")
 application = Application.builder().token(token).build()
 pytgcalls = PyTgCalls(application)
@@ -40,7 +39,8 @@ async def radio(update, context):
 def main():
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("radio", radio))
-    pytgcalls.run_with_asyncio(application.run_polling())
+    application.run_polling()
+    idle()
 
 if __name__ == "__main__":
     main()
